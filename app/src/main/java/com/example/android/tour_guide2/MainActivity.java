@@ -11,7 +11,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         getSupportActionBar().setElevation(0);
         // Set the content of the activity to use the activity_main.xml layout file
         setContentView(R.layout.activity_main);
@@ -23,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         //MiwokPagerAdapter adapter; this is implied in the new method being used on set
         // adapter below
         // Set the adapter onto the view pager
-        //TODO define LocationPagerAdapter from MiwokPagerAdapter
         viewPager.setAdapter(new LocationPagerAdapter(this, getSupportFragmentManager()));
         // Give the TabLayout the ViewPager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);

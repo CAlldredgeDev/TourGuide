@@ -17,12 +17,18 @@ public class LocationPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         //TODO implement other tabs to populate for all the locations
+        switch (position) {
+            case 0:
+                return new ThunderFragment();
+        }
         return null;
     }
 
     @Override
     public int getCount() {
         //TODO count up all the tabs we will have
-        return 0;
+        return 1;
     }
 }
+
+

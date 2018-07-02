@@ -71,7 +71,6 @@ public class ThunderFragment extends Fragment {
         //Required empty public contructor
     }
 
-    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.location_listview, container, false);
@@ -90,7 +89,7 @@ public class ThunderFragment extends Fragment {
         LocationAdapter adapter = new LocationAdapter(getActivity(), locations);
         ListView listView = (ListView) rootView.findViewById(R.id.list);
         listView.setAdapter(adapter);
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return rootView;
 
     }
 
