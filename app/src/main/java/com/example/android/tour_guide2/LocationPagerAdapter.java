@@ -16,18 +16,39 @@ public class LocationPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        //TODO implement other tabs to populate for all the locations
         switch (position) {
             case 0:
-                return new ThunderFragment();
+                return new EntertainmentFragment();
+            case 1:
+                return new ConsumableFragment();
+            case 2:
+                return new SportsFragment();
+            case 3:
+                return new AcademicFragment();
         }
         return null;
     }
 
     @Override
     public int getCount() {
-        //TODO count up all the tabs we will have
-        return 1;
+        return 4;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+            case 0:
+                return mContext.getString(R.string.entertainment_fragment);
+            case 1:
+                return mContext.getString(R.string.consumable_fragment);
+            case 2:
+                return mContext.getString(R.string.sport_fragment);
+            case 3:
+                return mContext.getString(R.string.academic_fragment);
+            default:
+                return null;
+
+        }
     }
 }
 

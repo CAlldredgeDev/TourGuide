@@ -20,21 +20,6 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         //mColorResID = colorResID;
     }
 
-
-    //Use the ViewHolder pattern.
-    public class LocationViewHolder {
-        TextView mTitle;
-        ImageView mImageResourceID;
-        TextView mDate;
-
-        LocationViewHolder(View v) {
-            mTitle = (TextView) v.findViewById(R.id.event_name);
-            mImageResourceID = (ImageView) v.findViewById(R.id.event_image);
-            mDate = (TextView) v.findViewById(R.id.event_date);
-        }
-    }
-
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LocationViewHolder vh;
@@ -54,6 +39,19 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         vh.mDate.setText(currentLocation.getmDate());
 
         return convertView;
+    }
+
+    //Use the ViewHolder pattern.
+    public class LocationViewHolder {
+        TextView mTitle;
+        ImageView mImageResourceID;
+        TextView mDate;
+
+        LocationViewHolder(View v) {
+            mTitle = (TextView) v.findViewById(R.id.event_name);
+            mImageResourceID = (ImageView) v.findViewById(R.id.event_image);
+            mDate = (TextView) v.findViewById(R.id.event_date);
+        }
     }
 }
 

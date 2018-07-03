@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 //import android.support.annotation.Nullable;
 
-public class ThunderFragment extends Fragment {
+public class EntertainmentFragment extends Fragment {
 
     /**
      * Handles the actual playing of audio files
@@ -67,7 +67,7 @@ public class ThunderFragment extends Fragment {
         }
     };
 
-    public ThunderFragment() {
+    public EntertainmentFragment() {
         //Required empty public contructor
     }
 
@@ -78,11 +78,17 @@ public class ThunderFragment extends Fragment {
         //Need that ArrayList to contain all the locations
         final ArrayList<Location> locations = new ArrayList<Location>();
 
-        locations.add(new Location("WaterFront Park", R.drawable.ic_launcher_background, "04-13-2019"));
-        locations.add(new Location("WaterFront Park", R.drawable.ic_launcher_background, "04-13-2019"));
-        locations.add(new Location("WaterFront Park", R.drawable.ic_launcher_background, "04-13-2019"));
-        locations.add(new Location("WaterFront Park", R.drawable.ic_launcher_background, "04-13-2019"));
-        locations.add(new Location("WaterFront Park", R.drawable.ic_launcher_background, "04-13-2019"));
+        locations.add(new Location("Great BalloonFest", R.drawable.ic_launcher_background, "Thursday, April 26, 2018", "Bowman Field/The Kentucky Exposition Center", 38.2286909, -85.6696377, 16));
+        locations.add(new Location("Great Bed Races", R.drawable.ic_launcher_background, "Monday, April 30, 2018", "Broadbent Arena", 38.2005961, -85.7477826, 17));
+        locations.add(new Location("Derby of the Dead Presented By Louisville Zombie Walk", R.drawable.ic_launcher_background, "Friday, April 27, 2018", "Waterfront, Great Lawn", 38.2588016, -85.746803, 18));
+        locations.add(new Location("Horseshoe Foundation FamFest", R.drawable.ic_launcher_background, "Wednesday, April 11, 2018", "Downtown New Albany (Next to YMCA)", 38.2826687, -85.82391, 18));
+        locations.add(new Location("Spring Fashion Show", R.drawable.ic_launcher_background, "Thursday, March 29, 2018", "Showroom, Horseshoe Southern Indiana", 38.179638, -85.9076035, 17));
+        locations.add(new Location("Fest-a-Ville", R.drawable.ic_launcher_background, "Thursday, April 26, 2018", "Waterfront Park", 38.2597871, -85.7460685, 17));
+        locations.add(new Location("Pegasus Parade", R.drawable.ic_launcher_background, "Thursday, May 3, 2018", "West on Broadway from Campbell to 9th St", 38.2445351, -85.7396596, 17));
+        locations.add(new Location("Great Steamboat Race - Riverfront", R.drawable.ic_launcher_background, "Wednesday, May 2, 2018 ", "Riverfront", 38.2587993, -85.7570198, 16));
+        locations.add(new Location("Texas Ho Ho Hold’Em Tournament", R.drawable.ic_launcher_background, "Saturday, November 4, 2017", "Horseshoe Casino Southern Indiana", 38.179638, -85.9076035, 17));
+        locations.add(new Location("Texas Hold’Em Tournament", R.drawable.ic_launcher_background, "Tuesday, May 1, 2018", "Belle of Cincinnati, Docked at Kroger’s Fest-a-Ville", 38.2597607, -85.7442052, 16));
+        locations.add(new Location("THUNDER OVER LOUISVILLE", R.drawable.ic_launcher_background, "Saturday, April 13, 2019", "Riverfront", 38.2636466, -85.7447083, 16));
 
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         //Create the LocationAdpter that will read our Location. The adapter know how to create the list items.

@@ -12,22 +12,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Thunder"
+        android:gravity="center_horizontal"
         android:textSize="24dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:text="Thunder" />
 
     <ImageView
         android:id="@+id/event_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_blue_dark"
-        android:src="@drawable/ic_launcher_background" />
+        tools:src="@drawable/ic_launcher_background" />
 
     <TextView
         android:id="@+id/event_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="04-13-2019" />
+        tools:text="04-13-2019" />
 
 </LinearLayout>

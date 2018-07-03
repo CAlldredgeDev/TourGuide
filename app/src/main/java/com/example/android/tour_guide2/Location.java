@@ -7,9 +7,10 @@ public class Location extends AppCompatActivity {
     private int mImageResourceID;
     private String mDate;
     private String mAddress;
-    private float mLat;
-    private float mLng;
+    private double mLat;
+    private double mLng;
     private int mZoom;
+
     //Title, Background Image, Date of Event
     public Location(String title, int imageResourceID, String date) {
         mTitle = title;
@@ -26,7 +27,7 @@ public class Location extends AppCompatActivity {
     }
 
     //Now with Map intent
-    public Location(String title, int imageResourceID, String date, String address, float latitude, float longitude, int zoom) {
+    public Location(String title, int imageResourceID, String date, String address, double latitude, double longitude, int zoom) {
         mTitle = title;
         mImageResourceID = imageResourceID;
         mDate = date;
@@ -36,7 +37,7 @@ public class Location extends AppCompatActivity {
         mZoom = zoom;
     }
 
-    //TODO implement other constructors for including maps and sounds
+    //TODO implement other constructors for including sounds
 
 
     public String getmTitle() {

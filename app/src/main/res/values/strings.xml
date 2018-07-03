@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Tour_Guide2</string>
+    <string name="entertainment_fragment">Entertainment</string>
+    <string name="consumable_fragment">Food</string>
+    <string name="sport_fragment">Sports</string>
+    <string name="academic_fragment">Academics</string>
 </resources>
