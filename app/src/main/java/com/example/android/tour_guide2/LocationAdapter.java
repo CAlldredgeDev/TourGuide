@@ -37,6 +37,7 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         vh.mTitle.setText(currentLocation.getmTitle());
         vh.mImageResourceID.setImageResource(currentLocation.getmImageResourceID());
         vh.mDate.setText(currentLocation.getmDate());
+        vh.mAddress.setText(currentLocation.getmAddress());
 
         return convertView;
     }
@@ -46,11 +47,13 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         TextView mTitle;
         ImageView mImageResourceID;
         TextView mDate;
+        TextView mAddress;
 
         LocationViewHolder(View v) {
             mTitle = (TextView) v.findViewById(R.id.event_name);
             mImageResourceID = (ImageView) v.findViewById(R.id.event_image);
             mDate = (TextView) v.findViewById(R.id.event_date);
+            mAddress = (TextView) v.findViewById(R.id.address);
         }
     }
 }

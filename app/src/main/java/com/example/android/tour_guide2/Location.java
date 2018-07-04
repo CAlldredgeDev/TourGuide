@@ -55,5 +55,18 @@ public class Location extends AppCompatActivity {
     public String getmDate() {
         return mDate;
     }
+
+    public double getmLat() {
+        return mLat;
+    }
+
+    public double getmLng() {
+        return mLng;
+    }
+
+    public int getmZoom() {
+        return mZoom;
+    }
+
 }
 

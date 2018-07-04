@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -74,21 +75,22 @@ public class EntertainmentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.location_listview, container, false);
-
+        ImageView header = (ImageView) rootView.findViewById(R.id.header);
+        header.setImageResource(R.drawable.thunder);
         //Need that ArrayList to contain all the locations
         final ArrayList<Location> locations = new ArrayList<Location>();
 
-        locations.add(new Location("Great BalloonFest", R.drawable.ic_launcher_background, "Thursday, April 26, 2018", "Bowman Field/The Kentucky Exposition Center", 38.2286909, -85.6696377, 16));
-        locations.add(new Location("Great Bed Races", R.drawable.ic_launcher_background, "Monday, April 30, 2018", "Broadbent Arena", 38.2005961, -85.7477826, 17));
-        locations.add(new Location("Derby of the Dead Presented By Louisville Zombie Walk", R.drawable.ic_launcher_background, "Friday, April 27, 2018", "Waterfront, Great Lawn", 38.2588016, -85.746803, 18));
-        locations.add(new Location("Horseshoe Foundation FamFest", R.drawable.ic_launcher_background, "Wednesday, April 11, 2018", "Downtown New Albany (Next to YMCA)", 38.2826687, -85.82391, 18));
-        locations.add(new Location("Spring Fashion Show", R.drawable.ic_launcher_background, "Thursday, March 29, 2018", "Showroom, Horseshoe Southern Indiana", 38.179638, -85.9076035, 17));
-        locations.add(new Location("Fest-a-Ville", R.drawable.ic_launcher_background, "Thursday, April 26, 2018", "Waterfront Park", 38.2597871, -85.7460685, 17));
-        locations.add(new Location("Pegasus Parade", R.drawable.ic_launcher_background, "Thursday, May 3, 2018", "West on Broadway from Campbell to 9th St", 38.2445351, -85.7396596, 17));
-        locations.add(new Location("Great Steamboat Race - Riverfront", R.drawable.ic_launcher_background, "Wednesday, May 2, 2018 ", "Riverfront", 38.2587993, -85.7570198, 16));
-        locations.add(new Location("Texas Ho Ho Hold’Em Tournament", R.drawable.ic_launcher_background, "Saturday, November 4, 2017", "Horseshoe Casino Southern Indiana", 38.179638, -85.9076035, 17));
-        locations.add(new Location("Texas Hold’Em Tournament", R.drawable.ic_launcher_background, "Tuesday, May 1, 2018", "Belle of Cincinnati, Docked at Kroger’s Fest-a-Ville", 38.2597607, -85.7442052, 16));
-        locations.add(new Location("THUNDER OVER LOUISVILLE", R.drawable.ic_launcher_background, "Saturday, April 13, 2019", "Riverfront", 38.2636466, -85.7447083, 16));
+        locations.add(new Location("Great BalloonFest", R.drawable.fleur, "Thursday, April 26, 2018", "Bowman Field/The Kentucky Exposition Center", 38.2286909, -85.6696377, 16));
+        locations.add(new Location("Great Bed Races", R.drawable.fleur, "Monday, April 30, 2018", "Broadbent Arena", 38.2005961, -85.7477826, 17));
+        locations.add(new Location("Derby of the Dead Presented By Louisville Zombie Walk", R.drawable.fleur, "Friday, April 27, 2018", "Waterfront, Great Lawn", 38.2588016, -85.746803, 18));
+        locations.add(new Location("Horseshoe Foundation FamFest", R.drawable.fleur, "Wednesday, April 11, 2018", "Downtown New Albany (Next to YMCA)", 38.2826687, -85.82391, 18));
+        locations.add(new Location("Spring Fashion Show", R.drawable.fleur, "Thursday, March 29, 2018", "Showroom, Horseshoe Southern Indiana", 38.179638, -85.9076035, 17));
+        locations.add(new Location("Fest-a-Ville", R.drawable.fleur, "Thursday, April 26, 2018", "Waterfront Park", 38.2597871, -85.7460685, 17));
+        locations.add(new Location("Pegasus Parade", R.drawable.fleur, "Thursday, May 3, 2018", "West on Broadway from Campbell to 9th St", 38.2445351, -85.7396596, 17));
+        locations.add(new Location("Great Steamboat Race - Riverfront", R.drawable.fleur, "Wednesday, May 2, 2018 ", "Riverfront", 38.2587993, -85.7570198, 16));
+        locations.add(new Location("Texas Ho Ho Hold’Em Tournament", R.drawable.fleur, "Saturday, November 4, 2017", "Horseshoe Casino Southern Indiana", 38.179638, -85.9076035, 17));
+        locations.add(new Location("Texas Hold’Em Tournament", R.drawable.fleur, "Tuesday, May 1, 2018", "Belle of Cincinnati, Docked at Kroger’s Fest-a-Ville", 38.2597607, -85.7442052, 16));
+        locations.add(new Location("THUNDER OVER LOUISVILLE", R.drawable.fleur, "Saturday, April 13, 2019", "Riverfront", 38.2636466, -85.7447083, 16));
 
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         //Create the LocationAdpter that will read our Location. The adapter know how to create the list items.

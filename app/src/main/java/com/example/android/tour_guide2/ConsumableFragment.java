@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -74,15 +75,16 @@ public class ConsumableFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.location_listview, container, false);
-
+        ImageView header = (ImageView) rootView.findViewById(R.id.header);
+        header.setImageResource(R.drawable.chowwagon);
         //Need that ArrayList to contain all the locations
         final ArrayList<Location> locations = new ArrayList<Location>();
 
-        locations.add(new Location("BeerFest", R.drawable.ic_launcher_background, "Wednesday, May 2, 2018", "The Overlook", 38.2597607, -85.7442052, 16));
-        locations.add(new Location("BourbonVille", R.drawable.ic_launcher_background, " Thursday, April 12, 2018", "The Louisville Palace", 38.2480633, -85.7578437, 17));
-        locations.add(new Location("Chow Wagon", R.drawable.ic_launcher_background, "Thursday, April 26, 2018", "Waterfront Park", 38.2597871, -85.7460685, 17));
-        locations.add(new Location("Night At Vincenzo’s", R.drawable.ic_launcher_background, "Sunday, June 10, 2018", "Vincenzo’s", 38.2556246, -85.7585259, 17));
-        locations.add(new Location("Taste of Derby Festival", R.drawable.ic_launcher_background, "Tuesday, April 17, 2018", "Louisville Slugger Field", 38.256692, -85.7445172, 17));
+        locations.add(new Location("BeerFest", R.drawable.fleur, "Wednesday, May 2, 2018", "The Overlook", 38.2597607, -85.7442052, 16));
+        locations.add(new Location("BourbonVille", R.drawable.fleur, " Thursday, April 12, 2018", "The Louisville Palace", 38.2480633, -85.7578437, 17));
+        locations.add(new Location("Chow Wagon", R.drawable.fleur, "Thursday, April 26, 2018", "Waterfront Park", 38.2597871, -85.7460685, 17));
+        locations.add(new Location("Night At Vincenzo’s", R.drawable.fleur, "Sunday, June 10, 2018", "Vincenzo’s", 38.2556246, -85.7585259, 17));
+        locations.add(new Location("Taste of Derby Festival", R.drawable.fleur, "Tuesday, April 17, 2018", "Louisville Slugger Field", 38.256692, -85.7445172, 17));
 
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         //Create the LocationAdpter that will read our Location. The adapter know how to create the list items.

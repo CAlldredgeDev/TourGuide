@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -74,18 +75,19 @@ public class SportsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.location_listview, container, false);
-
+        ImageView header = (ImageView) rootView.findViewById(R.id.header);
+        header.setImageResource(R.drawable.cycles);
         //Need that ArrayList to contain all the locations
         final ArrayList<Location> locations = new ArrayList<Location>();
 
-        locations.add(new Location("Don Fightmaster Golf Outing For Exceptional Children", R.drawable.ic_launcher_background, "Tuesday, May 1, 2018", "Long Run Golf Course", 38.2698012, -85.4247522, 17));
-        locations.add(new Location("$1 Million Dollar Hole-In-One Golf Contest", R.drawable.ic_launcher_background, "Thursday, April 19, 2018", "Seneca Golf Course Driving Range", 38.2299979, -85.6732043, 1));
-        locations.add(new Location("Neigh-Maste on the Waterfront", R.drawable.ic_launcher_background, "Friday, April 27, 2018", "Waterfront Park", 38.2597871, -85.7460685, 17));
-        locations.add(new Location("NPC Derby Championships", R.drawable.ic_launcher_background, "Saturday, April 28, 2018", "rand Ballroom, Galt House Hotel", 38.2581293, -85.7593204, 17));
-        locations.add(new Location("Ohio Valley Wrestling Run For The Ropes", R.drawable.ic_launcher_background, "Friday, April 27, 2018", "Waterfront Park", 38.2597871, -85.7460685, 17));
-        locations.add(new Location("Pro-Am Golf Tournament", R.drawable.ic_launcher_background, "Monday, April 16, 2018", "Wildwood Country Club", 38.1745505, -85.6199269, 17));
-        locations.add(new Location("Louisville Cup Boys & Girls", R.drawable.ic_launcher_background, "Saturday, April 21, 2018", "Bullit Estates Farm"));
-        locations.add(new Location("Tour de Lou", R.drawable.ic_launcher_background, "Sunday, April 29, 2018", "Start & Finish at Waterfront Park", 38.2597871, -85.7460685, 17));
+        locations.add(new Location("Don Fightmaster Golf Outing For Exceptional Children", R.drawable.fleur, "Tuesday, May 1, 2018", "Long Run Golf Course", 38.2698012, -85.4247522, 17));
+        locations.add(new Location("$1 Million Dollar Hole-In-One Golf Contest", R.drawable.fleur, "Thursday, April 19, 2018", "Seneca Golf Course Driving Range", 38.2299979, -85.6732043, 1));
+        locations.add(new Location("Neigh-Maste on the Waterfront", R.drawable.fleur, "Friday, April 27, 2018", "Waterfront Park", 38.2597871, -85.7460685, 17));
+        locations.add(new Location("NPC Derby Championships", R.drawable.fleur, "Saturday, April 28, 2018", "rand Ballroom, Galt House Hotel", 38.2581293, -85.7593204, 17));
+        locations.add(new Location("Ohio Valley Wrestling Run For The Ropes", R.drawable.fleur, "Friday, April 27, 2018", "Waterfront Park", 38.2597871, -85.7460685, 17));
+        locations.add(new Location("Pro-Am Golf Tournament", R.drawable.fleur, "Monday, April 16, 2018", "Wildwood Country Club", 38.1745505, -85.6199269, 17));
+        locations.add(new Location("Louisville Cup Boys & Girls", R.drawable.fleur, "Saturday, April 21, 2018", "Bullit Estates Farm"));
+        locations.add(new Location("Tour de Lou", R.drawable.fleur, "Sunday, April 29, 2018", "Start & Finish at Waterfront Park", 38.2597871, -85.7460685, 17));
 
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         //Create the LocationAdpter that will read our Location. The adapter know how to create the list items.

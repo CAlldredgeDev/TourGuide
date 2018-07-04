@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -74,15 +75,17 @@ public class AcademicFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.location_listview, container, false);
+        ImageView header = (ImageView) rootView.findViewById(R.id.header);
+        header.setImageResource(R.drawable.academic);
 
         //Need that ArrayList to contain all the locations
         final ArrayList<Location> locations = new ArrayList<Location>();
 
-        locations.add(new Location("Academic Challenge", R.drawable.ic_launcher_background, "Saturday, March 24, 2018", "Hyatt Regency Hotel", 38.2534188, -85.7590683, 17));
-        locations.add(new Location("Louisville Youth Orchestra Concert", R.drawable.ic_launcher_background, " Sunday, April 29, 2018", "Iroquois Amphitheatre", 38.160141, -85.7824384, 17));
-        locations.add(new Location("RoboRumble: Regional Robotic Tournament", R.drawable.ic_launcher_background, "Saturday, March 10, 2018 ", "Moore High School", 38.1387055, -85.6406964, 17));
-        locations.add(new Location("Spelling Bee", R.drawable.ic_launcher_background, "Saturday, March 17, 2018", "Bomhard Theater, Kentucky Center for the Arts ", 38.2573922, -85.7613477, 17));
-        locations.add(new Location("Student Art Contest", R.drawable.ic_launcher_background, "Tuesday, March 27, 2018", "J. Graham Brown School", 38.2503765, -85.7551767, 17));
+        locations.add(new Location("Academic Challenge", R.drawable.fleur, "Saturday, March 24, 2018", "Hyatt Regency Hotel", 38.2534188, -85.7590683, 17));
+        locations.add(new Location("Louisville Youth Orchestra Concert", R.drawable.fleur, " Sunday, April 29, 2018", "Iroquois Amphitheatre", 38.160141, -85.7824384, 17));
+        locations.add(new Location("RoboRumble: Regional Robotic Tournament", R.drawable.fleur, "Saturday, March 10, 2018 ", "Moore High School", 38.1387055, -85.6406964, 17));
+        locations.add(new Location("Spelling Bee", R.drawable.fleur, "Saturday, March 17, 2018", "Bomhard Theater, Kentucky Center for the Arts ", 38.2573922, -85.7613477, 17));
+        locations.add(new Location("Student Art Contest", R.drawable.fleur, "Tuesday, March 27, 2018", "J. Graham Brown School", 38.2503765, -85.7551767, 17));
 
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         //Create the LocationAdpter that will read our Location. The adapter know how to create the list items.

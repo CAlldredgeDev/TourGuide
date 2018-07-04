@@ -1,11 +1,15 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">#FAFAFA</item>
+        <item name="colorPrimaryDark">#BDBDBD</item>
+        <item name="colorAccent">#8BC34A</item>
     </style>
 
+    <style name="tabTextStyle">
+        <item name="android:textSize">11pt</item>
+        <item name="android:fontFamily">@font/librefranklinbold</item>
+    </style>
 </resources>
