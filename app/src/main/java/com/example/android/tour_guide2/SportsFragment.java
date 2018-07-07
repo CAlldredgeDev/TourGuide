@@ -1,14 +1,17 @@
 package com.example.android.tour_guide2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -80,20 +83,48 @@ public class SportsFragment extends Fragment {
         //Need that ArrayList to contain all the locations
         final ArrayList<Location> locations = new ArrayList<Location>();
 
-        locations.add(new Location("Don Fightmaster Golf Outing For Exceptional Children", R.drawable.fleur, "Tuesday, May 1, 2018", "Long Run Golf Course", 38.2698012, -85.4247522, 17));
-        locations.add(new Location("$1 Million Dollar Hole-In-One Golf Contest", R.drawable.fleur, "Thursday, April 19, 2018", "Seneca Golf Course Driving Range", 38.2299979, -85.6732043, 1));
-        locations.add(new Location("Neigh-Maste on the Waterfront", R.drawable.fleur, "Friday, April 27, 2018", "Waterfront Park", 38.2597871, -85.7460685, 17));
-        locations.add(new Location("NPC Derby Championships", R.drawable.fleur, "Saturday, April 28, 2018", "rand Ballroom, Galt House Hotel", 38.2581293, -85.7593204, 17));
-        locations.add(new Location("Ohio Valley Wrestling Run For The Ropes", R.drawable.fleur, "Friday, April 27, 2018", "Waterfront Park", 38.2597871, -85.7460685, 17));
-        locations.add(new Location("Pro-Am Golf Tournament", R.drawable.fleur, "Monday, April 16, 2018", "Wildwood Country Club", 38.1745505, -85.6199269, 17));
-        locations.add(new Location("Louisville Cup Boys & Girls", R.drawable.fleur, "Saturday, April 21, 2018", "Bullit Estates Farm"));
-        locations.add(new Location("Tour de Lou", R.drawable.fleur, "Sunday, April 29, 2018", "Start & Finish at Waterfront Park", 38.2597871, -85.7460685, 17));
+        //Populate with locations to display
+        locations.add(new Location(getString(R.string.sport_event_1), R.drawable.fleur, getString(R.string.date18), getString(R.string.longrunGolf), 38.26, -85.42, 15, getString(R.string.pin22), R.raw.button010));
+        locations.add(new Location(getString(R.string.sport_event_2), R.drawable.fleur, getString(R.string.date20), getString(R.string.senecaGolf), 38.22, -85.67, 15, getString(R.string.pin23), R.raw.button010));
+        locations.add(new Location(getString(R.string.sport_event_3), R.drawable.fleur, getString(R.string.date13), getString(R.string.waterfrontPark), 38.25, -85.74, 15, getString(R.string.pin24), R.raw.button010));
+        locations.add(new Location(getString(R.string.sport_event_4), R.drawable.fleur, getString(R.string.date21), getString(R.string.ballroom_galt_house), 38.25, -85.75, 15, getString(R.string.pin25), R.raw.button010));
+        locations.add(new Location(getString(R.string.sport_event_5), R.drawable.fleur, getString(R.string.date13), getString(R.string.waterfront_park), 38.25, -85.74, 15, getString(R.string.pin26), R.raw.button010));
+        locations.add(new Location(getString(R.string.sport_event_6), R.drawable.fleur, getString(R.string.date22), getString(R.string.wildwoodCountryClub), 38.17, -85.61, 15, getString(R.string.pin27), R.raw.button010));
+        locations.add(new Location(getString(R.string.sport_event_7), R.drawable.fleur, getString(R.string.date23), getString(R.string.bullitEstateFarm),38.2641117,-85.7321441,15,getString(R.string.pin28), R.raw.button010));
+        locations.add(new Location(getString(R.string.sport_event_8), R.drawable.fleur, getString(R.string.date2), getString(R.string.tourDeLou), 38.25, -85.74, 15, getString(R.string.pin29), R.raw.button010));
 
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         //Create the LocationAdpter that will read our Location. The adapter know how to create the list items.
-        LocationAdapter adapter = new LocationAdapter(getActivity(), locations);
+        final LocationAdapter adapter = new LocationAdapter(getActivity(), locations);
         ListView listView = (ListView) rootView.findViewById(R.id.list);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Location selection = (Location) adapter.getItem(position);
+                // Request audio focus so in order to play the audio file. The app needs to play a
+                // short audio file, so we will request audio focus with a short amount of time
+                // with AUDIOFOCUS_GAIN_TRANSIENT.
+                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                        AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    // Release the media player if it currently exists because we are about to
+                    // play a different sound file
+                    releaseMediaPlayer();
+                    mMediaPlayer = MediaPlayer.create(getActivity(), locations.get(position).getmAudioResID());
+                    mMediaPlayer.start();
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                }
+                // Creates an Intent that will load a map of a specified location in the location
+                //object stored in the listview.
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + selection.getmMapPin() + (selection.getmPinLabel()));
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
         return rootView;
 
     }

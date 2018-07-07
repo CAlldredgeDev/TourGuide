@@ -1,8 +1,6 @@
 package com.example.android.tour_guide2;
 
-import android.support.v7.app.AppCompatActivity;
-
-public class Location extends AppCompatActivity {
+public class Location{
     private String mTitle;
     private int mImageResourceID;
     private String mDate;
@@ -10,6 +8,9 @@ public class Location extends AppCompatActivity {
     private double mLat;
     private double mLng;
     private int mZoom;
+    private String mMapPin;
+    private String mPinLabel;
+    private int mAudioResID;
 
     //Title, Background Image, Date of Event
     public Location(String title, int imageResourceID, String date) {
@@ -19,15 +20,16 @@ public class Location extends AppCompatActivity {
     }
 
     //Now with Address
-    public Location(String title, int imageResourceID, String date, String address) {
+    public Location(String title, int imageResourceID, String date, String address, int audioResID) {
         mTitle = title;
         mImageResourceID = imageResourceID;
         mDate = date;
         mAddress = address;
+        mAudioResID = audioResID;
     }
 
-    //Now with Map intent
-    public Location(String title, int imageResourceID, String date, String address, double latitude, double longitude, int zoom) {
+    //Now with map and no pin data
+    public Location(String title, int imageResourceID, String date, String address, double latitude, double longitude, int zoom, int audioResID) {
         mTitle = title;
         mImageResourceID = imageResourceID;
         mDate = date;
@@ -35,9 +37,22 @@ public class Location extends AppCompatActivity {
         mLat = latitude;
         mLng = longitude;
         mZoom = zoom;
+        mAudioResID = audioResID;
     }
 
-    //TODO implement other constructors for including sounds
+    //Now with Map intent and Pin
+    public Location(String title, int imageResourceID, String date, String address, double latitude, double longitude, int zoom, String pinLabel, int audioResID) {
+        mTitle = title;
+        mImageResourceID = imageResourceID;
+        mDate = date;
+        mAddress = address;
+        mLat = latitude;
+        mLng = longitude;
+        mZoom = zoom;
+        mPinLabel = pinLabel;
+        mAudioResID = audioResID;
+
+    }
 
 
     public String getmTitle() {
@@ -68,5 +83,17 @@ public class Location extends AppCompatActivity {
         return mZoom;
     }
 
+    public String getmMapPin() {
+        mMapPin = Double.toString(mLat) + ", " + Double.toString(mLng) + ", " + Integer.toString(mZoom);
+        return mMapPin;
+    }
+
+    public String getmPinLabel() {
+        return mPinLabel;
+    }
+
+    public int getmAudioResID() {
+        return mAudioResID;
+    }
 }
 

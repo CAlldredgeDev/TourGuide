@@ -1,14 +1,17 @@
 package com.example.android.tour_guide2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -73,30 +76,58 @@ public class EntertainmentFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.location_listview, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
+        final View rootView = inflater.inflate(R.layout.location_listview, container, false);
         ImageView header = (ImageView) rootView.findViewById(R.id.header);
         header.setImageResource(R.drawable.thunder);
         //Need that ArrayList to contain all the locations
         final ArrayList<Location> locations = new ArrayList<Location>();
 
-        locations.add(new Location("Great BalloonFest", R.drawable.fleur, "Thursday, April 26, 2018", "Bowman Field/The Kentucky Exposition Center", 38.2286909, -85.6696377, 16));
-        locations.add(new Location("Great Bed Races", R.drawable.fleur, "Monday, April 30, 2018", "Broadbent Arena", 38.2005961, -85.7477826, 17));
-        locations.add(new Location("Derby of the Dead Presented By Louisville Zombie Walk", R.drawable.fleur, "Friday, April 27, 2018", "Waterfront, Great Lawn", 38.2588016, -85.746803, 18));
-        locations.add(new Location("Horseshoe Foundation FamFest", R.drawable.fleur, "Wednesday, April 11, 2018", "Downtown New Albany (Next to YMCA)", 38.2826687, -85.82391, 18));
-        locations.add(new Location("Spring Fashion Show", R.drawable.fleur, "Thursday, March 29, 2018", "Showroom, Horseshoe Southern Indiana", 38.179638, -85.9076035, 17));
-        locations.add(new Location("Fest-a-Ville", R.drawable.fleur, "Thursday, April 26, 2018", "Waterfront Park", 38.2597871, -85.7460685, 17));
-        locations.add(new Location("Pegasus Parade", R.drawable.fleur, "Thursday, May 3, 2018", "West on Broadway from Campbell to 9th St", 38.2445351, -85.7396596, 17));
-        locations.add(new Location("Great Steamboat Race - Riverfront", R.drawable.fleur, "Wednesday, May 2, 2018 ", "Riverfront", 38.2587993, -85.7570198, 16));
-        locations.add(new Location("Texas Ho Ho Hold’Em Tournament", R.drawable.fleur, "Saturday, November 4, 2017", "Horseshoe Casino Southern Indiana", 38.179638, -85.9076035, 17));
-        locations.add(new Location("Texas Hold’Em Tournament", R.drawable.fleur, "Tuesday, May 1, 2018", "Belle of Cincinnati, Docked at Kroger’s Fest-a-Ville", 38.2597607, -85.7442052, 16));
-        locations.add(new Location("THUNDER OVER LOUISVILLE", R.drawable.fleur, "Saturday, April 13, 2019", "Riverfront", 38.2636466, -85.7447083, 16));
+        //Populate with locations to display
+        locations.add(new Location(getString(R.string.ent_event_1), R.drawable.fleur, getString(R.string.date11), getString(R.string.bowman_field), 38.22, -85.66, 15, getString(R.string.pin11), R.raw.button010));
+        locations.add(new Location(getString(R.string.ent_event_2), R.drawable.fleur, getString(R.string.date12), getString(R.string.broadbent_arena), 38.20, -85.74, 15, getString(R.string.pin12), R.raw.button010));
+        locations.add(new Location(getString(R.string.ent_event_3), R.drawable.fleur, getString(R.string.date13), getString(R.string.waterfont), 38.25, -85.74, 15, getString(R.string.pin13), R.raw.button010));
+        locations.add(new Location(getString(R.string.ent_event_4), R.drawable.fleur, getString(R.string.date14), getString(R.string.new_albany), 38.28, -85.82, 15, getString(R.string.pin14), R.raw.button010));
+        locations.add(new Location(getString(R.string.ent_event_5), R.drawable.fleur, getString(R.string.date15), getString(R.string.horseshoe_showroom), 38.1788113,-85.9040928, 15, getString(R.string.pin15), R.raw.button010));
+        locations.add(new Location(getString(R.string.ent_event_6), R.drawable.fleur, getString(R.string.date8), getString(R.string.waterfront_park), 38.25, -85.74, 15, getString(R.string.pin16), R.raw.button010));
+        locations.add(new Location(getString(R.string.ent_event_7), R.drawable.fleur, getString(R.string.date16), getString(R.string.marathon), 38.24, -85.73, 15, getString(R.string.pin17), R.raw.button010));
+        locations.add(new Location(getString(R.string.ent_event_8), R.drawable.fleur, getString(R.string.date6), getString(R.string.riverfront), 38.2587993, -85.7570198, 15, getString(R.string.pin18), R.raw.button010));
+        locations.add(new Location(getString(R.string.ent_event_9), R.drawable.fleur, getString(R.string.date17), getString(R.string.horseshoe), 38.1788113,-85.9040928, 15, getString(R.string.pin19), R.raw.button010));
+        locations.add(new Location(getString(R.string.ent_event_10), R.drawable.fleur, getString(R.string.date18), getString(R.string.belle_of_cincinnati), 38.25, -85.74, 15, getString(R.string.pin20), R.raw.button010));
+        locations.add(new Location(getString(R.string.ent_event_11), R.drawable.fleur, getString(R.string.date19), getString(R.string.riverfront), 38.2636466, -85.7447083, 15, getString(R.string.pin21), R.raw.button010));
 
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         //Create the LocationAdpter that will read our Location. The adapter know how to create the list items.
-        LocationAdapter adapter = new LocationAdapter(getActivity(), locations);
-        ListView listView = (ListView) rootView.findViewById(R.id.list);
+        final LocationAdapter adapter = new LocationAdapter(getActivity(), locations);
+        final ListView listView = (ListView) rootView.findViewById(R.id.list);
         listView.setAdapter(adapter);
+        // Set a click listener to launch a map intent when the list item is clicked on
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Location selection = (Location) adapter.getItem(position);
+                // Request audio focus so in order to play the audio file. The app needs to play a
+                // short audio file, so we will request audio focus with a short amount of time
+                // with AUDIOFOCUS_GAIN_TRANSIENT.
+                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                        AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    // Release the media player if it currently exists because we are about to
+                    // play a different sound file
+                    releaseMediaPlayer();
+                    mMediaPlayer = MediaPlayer.create(getActivity(), locations.get(position).getmAudioResID());
+                    mMediaPlayer.start();
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                }
+                // Creates an Intent that will load a map of a specified location in the location
+                //object stored in the listview.
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + selection.getmMapPin() + (selection.getmPinLabel()));
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
         return rootView;
 
     }

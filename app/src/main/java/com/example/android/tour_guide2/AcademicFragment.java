@@ -1,14 +1,17 @@
 package com.example.android.tour_guide2;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -81,17 +84,45 @@ public class AcademicFragment extends Fragment {
         //Need that ArrayList to contain all the locations
         final ArrayList<Location> locations = new ArrayList<Location>();
 
-        locations.add(new Location("Academic Challenge", R.drawable.fleur, "Saturday, March 24, 2018", "Hyatt Regency Hotel", 38.2534188, -85.7590683, 17));
-        locations.add(new Location("Louisville Youth Orchestra Concert", R.drawable.fleur, " Sunday, April 29, 2018", "Iroquois Amphitheatre", 38.160141, -85.7824384, 17));
-        locations.add(new Location("RoboRumble: Regional Robotic Tournament", R.drawable.fleur, "Saturday, March 10, 2018 ", "Moore High School", 38.1387055, -85.6406964, 17));
-        locations.add(new Location("Spelling Bee", R.drawable.fleur, "Saturday, March 17, 2018", "Bomhard Theater, Kentucky Center for the Arts ", 38.2573922, -85.7613477, 17));
-        locations.add(new Location("Student Art Contest", R.drawable.fleur, "Tuesday, March 27, 2018", "J. Graham Brown School", 38.2503765, -85.7551767, 17));
+        //Populate with locations to display
+        locations.add(new Location(getString(R.string.aca_event_1), R.drawable.fleur, getString(R.string.date1), getString(R.string.Hyatt), 38.2534146,-85.7590683, 15, getString(R.string.pin1), R.raw.button010));
+        locations.add(new Location(getString(R.string.aca_event_2), R.drawable.fleur, getString(R.string.date2), getString(R.string.Iriquois), 38.16, -85.78, 15, getString(R.string.pin2), R.raw.button010));
+        locations.add(new Location(getString(R.string.aca_event_3), R.drawable.fleur, getString(R.string.date3), getString(R.string.Moor), 38.13, -85.64, 15, getString(R.string.pin3), R.raw.button010));
+        locations.add(new Location(getString(R.string.aca_event_4), R.drawable.fleur, getString(R.string.date4), getString(R.string.kyca), 38.25, -85.76, 15, getString(R.string.pin4), R.raw.button010));
+        locations.add(new Location(getString(R.string.aca_event_5), R.drawable.fleur, getString(R.string.date5), getString(R.string.brown_school), 38.25, -85.75, 15, getString(R.string.pin5), R.raw.button010));
+
 
         mAudioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         //Create the LocationAdpter that will read our Location. The adapter know how to create the list items.
-        LocationAdapter adapter = new LocationAdapter(getActivity(), locations);
+        final LocationAdapter adapter = new LocationAdapter(getActivity(), locations);
         ListView listView = (ListView) rootView.findViewById(R.id.list);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Location selection = (Location) adapter.getItem(position);
+                // Request audio focus so in order to play the audio file. The app needs to play a
+                // short audio file, so we will request audio focus with a short amount of time
+                // with AUDIOFOCUS_GAIN_TRANSIENT.
+                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                        AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    // Release the media player if it currently exists because we are about to
+                    // play a different sound file
+                    releaseMediaPlayer();
+                    mMediaPlayer = MediaPlayer.create(getActivity(), locations.get(position).getmAudioResID());
+                    mMediaPlayer.start();
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                }
+                // Creates an Intent that will load a map of a specified location in the location
+                //object stored in the listview.
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + selection.getmMapPin() + (selection.getmPinLabel()));
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
         return rootView;
 
     }

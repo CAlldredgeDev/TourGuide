@@ -1,6 +1,7 @@
 package com.example.android.tour_guide2;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +12,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class LocationAdapter extends ArrayAdapter<Location> {
-    //Need a var to hold the color ref for our list item background color
-    private int mColorResID;
 
     public LocationAdapter(Activity context, ArrayList<Location> locations) {
         super(context, 0, locations);
-        //Map that passed color to the member var.
-        //mColorResID = colorResID;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LocationViewHolder vh;
+        final LocationViewHolder vh;
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(
@@ -38,23 +35,35 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         vh.mImageResourceID.setImageResource(currentLocation.getmImageResourceID());
         vh.mDate.setText(currentLocation.getmDate());
         vh.mAddress.setText(currentLocation.getmAddress());
-
+        vh.mLat = currentLocation.getmLat();
+        vh.mLng = currentLocation.getmLng();
+        vh.mZoom = currentLocation.getmZoom();
         return convertView;
     }
 
     //Use the ViewHolder pattern.
     public class LocationViewHolder {
+        Context mContext;
         TextView mTitle;
         ImageView mImageResourceID;
         TextView mDate;
         TextView mAddress;
+        View mEvent_Item;
+        double mLat;
+        double mLng;
+        int mZoom;
+        String mMapPin;
 
-        LocationViewHolder(View v) {
+        public LocationViewHolder(View v) {
+            mContext = v.getContext();
             mTitle = (TextView) v.findViewById(R.id.event_name);
             mImageResourceID = (ImageView) v.findViewById(R.id.event_image);
             mDate = (TextView) v.findViewById(R.id.event_date);
             mAddress = (TextView) v.findViewById(R.id.address);
+            mEvent_Item = (View) v.findViewById(R.id.event_item);
+            mMapPin = Double.toString(mLat) + ", " + Double.toString(mLng) + ", " + Integer.toString(mZoom);
         }
+
     }
 }
 
